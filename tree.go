@@ -78,19 +78,19 @@ func (t Tree) Successor(x Item) Item {
 }
 
 // InOrder prepares in-order traversal of the tree and calls fn with value of
-// each visited node.
+// each visited node. If fn returns false it stops traversal.
 func (t Tree) InOrder(fn func(Item) bool) {
 	t.root.InOrder(fn)
 }
 
 // PreOrder prepares pre-order traversal of the tree and calls fn with value of
-// each visited node.
+// each visited node. If fn returns false it stops traversal.
 func (t Tree) PreOrder(fn func(Item) bool) {
 	t.root.PreOrder(fn)
 }
 
 // PostOrder prepares post-order traversal of the tree and calls fn with value
-// of each visited node.
+// of each visited node. If fn returns false it stops traversal.
 func (t Tree) PostOrder(fn func(Item) bool) {
 	t.root.PostOrder(fn)
 }
