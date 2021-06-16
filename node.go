@@ -180,6 +180,19 @@ func (n *node) Min() Item {
 	return n.value
 }
 
+func (n *node) Find(fn func(Item) bool) Item {
+	if n == nil {
+		return nil
+	}
+	if !fn(n.value) {
+		return n.right.Find(fn)
+	}
+	if v := n.left.Find(fn); v != nil {
+		return v
+	}
+	return n.value
+}
+
 // Search searches for a node having value x and return its value.
 // Note that x and node's value essentially can be a different types sharing
 // comparison logic.

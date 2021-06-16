@@ -7,6 +7,54 @@ import (
 	"testing"
 )
 
+func TestFind(t *testing.T) {
+	for _, test := range []struct {
+		name   string
+		insert []int
+		delete []int
+		result []Item
+		find   []func(Item) bool
+	}{
+		{
+			name:   "single",
+			insert: []int{1, 3, 2},
+			find: []func(Item) bool{
+				func(x Item) bool {
+					return int(x.(IntItem)) > 0
+				},
+				func(x Item) bool {
+					return int(x.(IntItem)) > 1
+				},
+				func(x Item) bool {
+					return int(x.(IntItem)) > 2
+				},
+				func(x Item) bool {
+					return int(x.(IntItem)) > 3
+				},
+			},
+			result: []Item{
+				IntItem(1),
+				IntItem(2),
+				IntItem(3),
+				nil,
+			},
+		},
+	} {
+		t.Run(test.name, func(t *testing.T) {
+			root := buildTree(t, test.insert, test.delete)
+			for i, fn := range test.find {
+				act := root.Find(fn)
+				if exp := test.result[i]; act != exp {
+					t.Fatalf(
+						"unexpected Find() result: %v; want %s",
+						act, exp,
+					)
+				}
+			}
+		})
+	}
+}
+
 func TestSearch(t *testing.T) {
 	for _, test := range []struct {
 		name   string
