@@ -22,6 +22,9 @@ package avl
 //
 //	tree, _ = tree.Insert(User{ID: 42})
 //	user := tree.Search(ID(42))
+//
+// That is, Item can represent both the key for searching and value for storing
+// (or searching).
 type Item interface {
 	// Compare compares item itself with another item usually stored in a tree.
 	// It reports whether the receiver is less, greater or equal to the given

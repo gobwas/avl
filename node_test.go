@@ -7,6 +7,53 @@ import (
 	"testing"
 )
 
+func TestSearch(t *testing.T) {
+	for _, test := range []struct {
+		name   string
+		insert []int
+		delete []int
+		search []int
+		result []Item
+	}{
+		{
+			name:   "empty tree",
+			search: []int{42},
+			result: []Item{nil},
+		},
+		{
+			name:   "single",
+			insert: []int{42},
+			search: []int{42},
+			result: []Item{IntItem(42)},
+		},
+		{
+			name:   "single",
+			insert: []int{1, 3, 2},
+			search: []int{2},
+			result: []Item{IntItem(2)},
+		},
+		{
+			name:   "single",
+			insert: []int{3, 1, 2},
+			search: []int{2},
+			result: []Item{IntItem(2)},
+		},
+	} {
+		t.Run(test.name, func(t *testing.T) {
+			root := buildTree(t, test.insert, test.delete)
+			for i, x := range test.search {
+				act := root.Search(IntItem(x))
+				if exp := test.result[i]; act != exp {
+					t.Fatalf(
+						"unexpected Search(%s) result: %v; want %s",
+						IntItem(x), act, exp,
+					)
+				}
+			}
+		})
+	}
+}
+
 func TestDeleteLastItem(t *testing.T) {
 	item := IntItem(1)
 	n0, _ := (*node)(nil).Insert(item)
