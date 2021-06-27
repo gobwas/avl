@@ -198,18 +198,18 @@ func (n *node) Search(x Item) Item {
 	}
 }
 
-// Predcessor finds a node which is in-order predcessor of a node having value
+// Predecessor finds a node which is in-order predcessor of a node having value
 // x. It returns value of found node or nil.
-func (n *node) Predcessor(x Item) Item {
+func (n *node) Predecessor(x Item) Item {
 	if n == nil {
 		return nil
 	}
 	cmp := x.Compare(n.value)
 	switch {
 	case cmp < 0:
-		return n.left.Predcessor(x)
+		return n.left.Predecessor(x)
 	case cmp > 0:
-		p := n.right.Predcessor(x)
+		p := n.right.Predecessor(x)
 		if p == nil {
 			p = n.value
 		}

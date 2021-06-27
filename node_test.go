@@ -161,7 +161,7 @@ func BenchmarkInsert(b *testing.B) {
 	}
 }
 
-func TestPredcessorSuccessor(t *testing.T) {
+func TestPredecessorSuccessor(t *testing.T) {
 	for _, test := range []struct {
 		name       string
 		insert     []int
@@ -200,7 +200,7 @@ func TestPredcessorSuccessor(t *testing.T) {
 	} {
 		t.Run(test.name, func(t *testing.T) {
 			root := buildTree(t, test.insert, nil)
-			p := root.Predcessor(IntItem(test.lookup))
+			p := root.Predecessor(IntItem(test.lookup))
 			s := root.Successor(IntItem(test.lookup))
 			if act, exp := p, test.predcessor; act != exp {
 				t.Fatalf("unexpected predcessor: %s; want %s", act, exp)

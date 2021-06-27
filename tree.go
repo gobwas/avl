@@ -65,10 +65,10 @@ func (t Tree) Search(x Item) Item {
 	return t.root.Search(x)
 }
 
-// Predcessor finds a node in the tree which is an in-order predcessor of a
+// Predecessor finds a node in the tree which is an in-order predecessor of a
 // node having value x. It returns value of found node or nil.
-func (t Tree) Predcessor(x Item) Item {
-	return t.root.Predcessor(x)
+func (t Tree) Predecessor(x Item) Item {
+	return t.root.Predecessor(x)
 }
 
 // Successor finds a node in the tree which is an in-order successor of a node
