@@ -1,8 +1,12 @@
 package avl
 
-// Tree is an immutable container holding root of AVL tree.
+// Tree is an immutable container holding root of an AVL tree.
 // Modifying operations (Insert(), Update() and Delete()) are immutable and
 // return copy of the tree.
+//
+// Note that Tree holds pointer to the root of an AVL tree internally, which
+// makes Tree so called reference type. That is, there is no cases when you may
+// need to pass pointer to instance of the Tree.
 type Tree struct {
 	root *node
 	size int
