@@ -102,19 +102,19 @@ func (n *node) Update(x Item) (root *node, prev Item) {
 		}, nil
 	}
 	root = n.clone()
-	cmp := x.Compare(n.value)
+	cmp := x.Compare(root.value)
 	switch {
 	case cmp < 0:
 		root.left, prev = n.left.Update(x)
 	case cmp > 0:
-		root.right, prev = n.right.Insert(x)
+		root.right, prev = n.right.Update(x)
 	default:
 		root.value, prev = x, root.value
 	}
 
 	root.adjustHeight()
 
-	return root.rebalance(), nil
+	return root.rebalance(), prev
 }
 
 // Delete deletes a node having value x from the tree.

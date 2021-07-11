@@ -7,6 +7,21 @@ import (
 	"testing"
 )
 
+func TestUpdate(t *testing.T) {
+	var (
+		root *node
+		prev Item
+	)
+	root, prev = root.Update(IntItem(42))
+	if prev != nil {
+		t.Fatalf("unexpected non-nil prev item")
+	}
+	root, prev = root.Update(IntItem(42))
+	if prev == nil {
+		t.Fatalf("unexpected nil prev item")
+	}
+}
+
 func TestSearch(t *testing.T) {
 	for _, test := range []struct {
 		name   string
